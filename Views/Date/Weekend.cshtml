@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Hôm nay có phải cuối tuần?";
+
+    DateTime today = DateTime.Now;
+    bool isWeekend = today.DayOfWeek == DayOfWeek.Saturday
+                  || today.DayOfWeek == DayOfWeek.Sunday;
+
+    string thu = today.DayOfWeek switch
+    {
+        DayOfWeek.Monday    => "Thứ Hai",
+        DayOfWeek.Tuesday   => "Thứ Ba",
+        DayOfWeek.Wednesday => "Thứ Tư",
+        DayOfWeek.Thursday  => "Thứ Năm",
+        DayOfWeek.Friday    => "Thứ Sáu",
+        DayOfWeek.Saturday  => "Thứ Bảy",
+        _                   => "Chủ Nhật"
+    };
+}
+
+<h2>Kiểm tra cuối tuần</h2>
+
+<p>Hôm nay là: <strong>@thu, @today.ToString("dd/MM/yyyy")</strong></p>
+
+@if (isWeekend)
+{
+    <p style="color:green"><strong>Hôm nay là cuối tuần 🎉</strong></p>
+}
+else
+{
+    <p style="color:red"><strong>Hôm nay không phải cuối tuần.</strong></p>
+}
